@@ -28,21 +28,13 @@ public class CollectionDescription {
 	}
 
 	public int Dataset{
-		get{
-			return dataset;
-		}
-		set{
-			dataset = value;
-		}
+		get{ return dataset; }
+		set{ dataset = value; }
 	}
 
 	public int Id{
-		get{
-			return id;
-		}
-		set{
-			id = value;
-		}
+		get{ return id; }
+		set{ id = value; }
 	}
 
 }//end CollectionDescription

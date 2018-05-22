@@ -42,6 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IInput.cs" />
+    <Compile Include="IModul1.cs" />
+    <Compile Include="IModul2.cs" />
+    <Compile Include="IReader.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
