@@ -90,13 +90,13 @@ public class Modul1 : IModul1 {
             writeToModul2 = false;
             if (m_ListDescription.m_Description.Count == 0)
             {
-                Logger.Log("Clear Modul1 after sending data to Modul2.\n");
+                Logger.Log("Ciscenje Modula1 posle slanja podataka Modulu2.\n");
             }
 
         }
         else
         {
-            Logger.Log("Two different values of same DataSet still not found.\nData being buffered.\n");
+            Logger.Log("Dve razlicite vrednosti od istog Dataset-a jos nisu pronadjene.\nPodaci su baferovani.\n");
         }
 
         return true;
