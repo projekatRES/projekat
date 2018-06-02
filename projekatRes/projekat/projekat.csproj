@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="Description.cs" />
     <Compile Include="ECodes.cs" />
     <Compile Include="Input.cs" />
@@ -51,6 +52,12 @@
     <Compile Include="Modul1.cs" />
     <Compile Include="Modul1Property.cs" />
     <Compile Include="Modul2.cs" />
+=======
+    <Compile Include="IInput.cs" />
+    <Compile Include="IModul1.cs" />
+    <Compile Include="IModul2.cs" />
+    <Compile Include="IReader.cs" />
+>>>>>>> 482f448dcc51d22fc81114b4752efa874fe1867c
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reader.cs" />
