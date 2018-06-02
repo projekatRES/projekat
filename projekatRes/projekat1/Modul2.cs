@@ -12,6 +12,7 @@ using System.Text;
 using System.IO;
 using projekat1;
 using System.Xml.Serialization;
+using projekat;
 
 public class Modul2 : IModul2 {
 
@@ -236,13 +237,77 @@ public class Modul2 : IModul2 {
         return pomocnaLista;
     }
 
+    public bool SerializeList(CollectionDescription cd)
+    {
+        if (cd == null)
+        {
+            throw new ArgumentNullException("cd");
+        }
+
+        if (cd.Dataset == 1)
+        {
+            col1 = DESerializeList(1);
+            col1.Add(cd);
+
+            DataBase.serializer.SerializeObject<List<CollectionDescription>>(col1, "CollectionDescription1.xml");
+            return true;
+        }
+        else if (cd.Dataset == 2)
+        {
+            col2 = DESerializeList(2);
+            col2.Add(cd);
+            DataBase.serializer.SerializeObject<List<CollectionDescription>>(col2, "CollectionDescription2.xml");
+            return true;
+        }
+        else if (cd.Dataset == 3)
+        {
+            col3 = DESerializeList(3);
+            col3.Add(cd);
+            DataBase.serializer.SerializeObject<List<CollectionDescription>>(col3, "CollectionDescription3.xml");
+            return true;
+        }
+        else if (cd.Dataset == 4)
+        {
+            col4 = DESerializeList(4);
+            col4.Add(cd);
+            DataBase.serializer.SerializeObject<List<CollectionDescription>>(col4, "CollectionDescription4.xml");
+            return true;
+        }
+        else
+        {
+            throw new ArgumentException("Dataset nije validan.");
+        }
+
+    }
+
 
     public bool ReceiveFromInput(Code code, int value)
     {
-        throw new NotImplementedException();
-    }
-    public List<CollectionDescription> ReadDataForReader(Code code)
-    {
-        throw new NotImplementedException();
-    }
+            Modul2Property hp = new Modul2Property();
+            m_CollectionDescription = new CollectionDescription();
+            m_CollectionDescription.Id = (int)((DateTime.Now.Ticks / 10) % 1000000000);
+
+
+            hp.Code = code;
+            hp.Modul2Value = value;
+
+            m_CollectionDescription.m_HistoricalCollection.m_Modul2Property[0] = hp;
+
+            Codes codes = new Codes();
+            m_CollectionDescription.Dataset = codes.GetDataset(code);
+
+            if (ValidationCheck(m_CollectionDescription.m_HistoricalCollection.m_Modul2Property[0].Code, m_CollectionDescription.Dataset))
+            {
+                Logger.Log("ReceiveFromInput u Modulu2 je konvertovala primljene podatke u CollectionDescription");
+                Logger.Log("CD : " + m_CollectionDescription + "\n");
+                Serialize(m_CollectionDescription);
+            }
+            else
+            {
+                Logger.Log("Validacija Dataset-a u Modulu2 nije prosla.\n");
+                return false;
+            }
+            return true;
+        }
+    
 }//end Modul2
