@@ -25,4 +25,17 @@ public class Input : IInput {
 
 	}
 
+    public bool WriteToModul1(Code code, int value)
+    {
+
+
+        return true;
+    }
+    public bool ManualWriteToModul2(Code code, int value)
+    {
+
+
+        return true;
+    }
+
 }//end Input
