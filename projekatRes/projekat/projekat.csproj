@@ -42,8 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataIO.cs" />
     <Compile Include="Code.cs" />
     <Compile Include="CollectionDescription.cs" />
+    <Compile Include="DataBase.cs" />
     <Compile Include="Description.cs" />
     <Compile Include="HistoricalCollection.cs" />
     <Compile Include="IInput.cs" />
