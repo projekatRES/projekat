@@ -40,12 +40,11 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataIO.cs" />
     <Compile Include="Code.cs" />
     <Compile Include="CollectionDescription.cs" />
-    <Compile Include="DataBase.cs" />
     <Compile Include="Description.cs" />
     <Compile Include="HistoricalCollection.cs" />
     <Compile Include="IInput.cs" />
