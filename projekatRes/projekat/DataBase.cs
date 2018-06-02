@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace projekat
 {
+    [Serializable]
     public static class DataBase
     {
         public static DataIO serializer = new DataIO();
