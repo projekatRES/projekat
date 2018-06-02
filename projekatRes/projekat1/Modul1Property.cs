@@ -13,35 +13,57 @@ using System.IO;
 
 
 
-public class Modul1Property {
+public class Modul1Property
+{
+    private Code _code;
+    private int _value;
 
-	private Code code;
-	private int modul1Value;
+    public Modul1Property()
+    {
 
-	public Modul1Property(){
+    }
 
-	}
+    public Modul1Property(Code code, int value)
+    {
+        if (value == null)
+        {
+            throw new ArgumentNullException("Value is null");
+        }
+        if (code == null)
+        {
+            throw new ArgumentNullException("Value is null");
+        }
+        _code = code;
+        _value = value;
 
-	~Modul1Property(){
+    }
 
-	}
+    public Code Code
+    {
+        get
+        {
+            return _code;
+        }
+        set
+        {
+            _code = value;
+        }
+    }
 
-	public Code Code{
-		get{
-			return code;
-		}
-		set{
-			code = value;
-		}
-	}
+    public int Value
+    {
+        get
+        {
+            return _value;
+        }
+        set
+        {
+            _value = value;
+        }
+    }
 
-	public int Modul1Value{
-		get{
-			return Modul1Value;
-		}
-		set{
-			Modul1Value = value;
-		}
-	}
-
-}//end Modul1Property
+    public override string ToString()
+    {
+        return "Code: " + _code + "\tValue: " + _value;
+    }
+}
