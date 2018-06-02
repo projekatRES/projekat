@@ -25,3 +25,33 @@ public enum Code : int {
 	CODE_SOURCE
 
 }//end Code
+
+class Codes
+{
+    public static int GetDataset(Code code)
+    {
+        switch (code)
+        {
+            case Code.CODE_ANALOG:
+            case Code.CODE_DIGITAL:
+                return 1;
+
+            case Code.CODE_CUSTOM:
+            case Code.CODE_LIMITSET:
+                return 2;
+
+            case Code.CODE_SINGLENOE:
+            case Code.CODE_MULTIPLENODE:
+                return 3;
+
+            case Code.CODE_SOURCE:
+            case Code.CODE_CONSUMER:
+                return 4;
+
+            default:
+                return 0;
+        }
+    }
+
+
+}
