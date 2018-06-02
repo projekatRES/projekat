@@ -62,8 +62,8 @@ public class Modul1 : IModul1 {
                 {
                     if ((d.Dataset == des.Dataset) && (d._m1Property[0].Value != des._m1Property[0].Value))
                     {
-                        /*  Kad Dumping Buffer u svojoj kolekciji nakupi 2 razlicite vrednosti u okviru istog dataset-a, 
-                            tada prosledjuje podatke Historical komponenti (WriteToHistory).*/
+                        /*  Kad Modul1 u svojoj kolekciji nakupi 2 razlicite vrednosti u okviru istog dataset-a, 
+                            tada prosledjuje podatke Modul2 komponenti (WriteToModul2).*/
                         writeToModul2 = true;
                     }
                 }
@@ -81,7 +81,7 @@ public class Modul1 : IModul1 {
 
         if (writeToModul2 == true)
         {
-            /* Tom prilikom Modul1 prosledjuje Historical komponenti svoju strukturu – LD. */
+            /* Tom prilikom Modul1 prosledjuje Modul2 komponenti svoju strukturu – LD. */
             Logger.Log("\nFound two different values of same DataSet.\nSending ListDescription to Modul2.\n");
 
             m_Modul2.ReceiveFromModul1(m_ListDescription);
