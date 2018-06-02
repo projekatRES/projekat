@@ -42,7 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Code.cs" />
     <Compile Include="CollectionDescription.cs" />
     <Compile Include="Description.cs" />
     <Compile Include="HistoricalCollection.cs" />

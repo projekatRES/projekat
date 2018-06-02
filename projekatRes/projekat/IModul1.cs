@@ -14,5 +14,6 @@ using System.IO;
 
 
 public interface IModul1  {
+    bool ReceiveFromInput(Code code, int value);
 
 }//end IModul1
