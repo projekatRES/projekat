@@ -40,7 +40,7 @@ public class CollectionDescription {
 
     public override string ToString()
     {
-        return "ID: " + Id + ", DataSet: " + Dataset + ", Code: " + m_HistoricalCollection.m_Modul2Property[0].Code + "\nValue: " + m_HistoricalCollection.m_Modul2Property[0].Modul2Value +"\n TimeStamp: " + timeStamp + "\n";
+        return "ID: " + Id + ", DataSet: " + Dataset + ", Code: " + m_HistoricalCollection.m_Modul2Property[0].Code + "\nVrednost: " + m_HistoricalCollection.m_Modul2Property[0].Modul2Value +"\n TimeStamp: " + timeStamp + "\n";
         }
 
 }//end CollectionDescription

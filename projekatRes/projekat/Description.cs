@@ -61,7 +61,7 @@ public class Description
     {
         if (property == null)
         {
-            throw new ArgumentNullException("'property' can't be null");
+            throw new ArgumentNullException("'property' ne moze biti null");
         }
 
         try

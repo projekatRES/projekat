@@ -27,11 +27,11 @@ public class Modul1Property
     {
         if (value == null)
         {
-            throw new ArgumentNullException("Value is null");
+            throw new ArgumentNullException("Vrednost je null");
         }
         if (code == null)
         {
-            throw new ArgumentNullException("Value is null");
+            throw new ArgumentNullException("Vrednost je null");
         }
         _code = code;
         _value = value;
@@ -64,6 +64,6 @@ public class Modul1Property
 
     public override string ToString()
     {
-        return "Code: " + _code + "\tValue: " + _value;
+        return "Code: " + _code + "\tVrednost: " + _value;
     }
 }
