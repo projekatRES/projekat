@@ -4,17 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace projekat
+namespace projekat1
 {
-    public class ListDescription
+    class Program
     {
-        private List<Description> _listDescription;
-
-        public ListDescription()
+        static void Main(string[] args)
         {
-
         }
     }
-
-
 }

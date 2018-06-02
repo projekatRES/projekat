@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3BFDD3D2-C074-4A8C-BE20-8E19BF3C185B}</ProjectGuid>
+    <ProjectGuid>{7F5EA295-F773-496B-B00E-F02552A98731}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>projekat</RootNamespace>
-    <AssemblyName>projekat</AssemblyName>
+    <RootNamespace>projekat1</RootNamespace>
+    <AssemblyName>projekat1</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,12 +42,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IInput.cs" />
-    <Compile Include="IModul1.cs" />
-    <Compile Include="IModul2.cs" />
-    <Compile Include="IReader.cs" />
+    <Compile Include="Code.cs" />
+    <Compile Include="CollectionDescription.cs" />
+    <Compile Include="Description.cs" />
+    <Compile Include="HistoricalCollection.cs" />
+    <Compile Include="Input.cs" />
+    <Compile Include="ListDescription.cs" />
+    <Compile Include="Modul1.cs" />
+    <Compile Include="Modul1Property.cs" />
+    <Compile Include="Modul2.cs" />
+    <Compile Include="Modul2Property.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
