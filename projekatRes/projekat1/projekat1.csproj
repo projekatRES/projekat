@@ -48,6 +48,7 @@
     <Compile Include="HistoricalCollection.cs" />
     <Compile Include="Input.cs" />
     <Compile Include="ListDescription.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="Modul1.cs" />
     <Compile Include="Modul1Property.cs" />
     <Compile Include="Modul2.cs" />
