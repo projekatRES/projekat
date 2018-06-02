@@ -14,7 +14,7 @@ using System.IO;
 
 
 public interface IInput  {
-    bool WriteToModul1(Code code, int value);
-    bool ManualWriteToModul2(Code code, int value);
+    bool WriteToModul2(Code code, int value);
+    bool ManualWriteToModul1(Code code, int value);
 
 }//end IInput

@@ -10,12 +10,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-
-
+using projekat1;
 
 public class Input : IInput {
 
-	public Modul1 m_Modul1;
+    public IModul1 m_Modul1 = new Modul1();
+    public IModul2 m_Modul2 = new Modul2();
 
 	public Input(){
 
@@ -25,13 +25,20 @@ public class Input : IInput {
 
 	}
 
-    public bool WriteToModul1(Code code, int value)
-    {
 
+    // salje direktno podatke Modulu1 na svake 3 sekunde
+    public bool WriteToModul2(Code code, int value)
+    {
+        Logger.Log("\n\nSlanje podataka iz Inputa direktno u Modul1\nData: " + code + ", " + value + "\nTime:" + DateTime.Now);
+        // m_Historical.ReceiveFromWriter(code, value);
+
+        //return m_Modul2.ReceiveFromWriter(code, value);
 
         return true;
     }
-    public bool ManualWriteToModul2(Code code, int value)
+
+    // salje podatke Modulu2 koje unosi korisnik
+    public bool ManualWriteToModul1(Code code, int value)
     {
 
 

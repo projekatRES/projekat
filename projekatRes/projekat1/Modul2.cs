@@ -13,7 +13,7 @@ using System.IO;
 
 
 
-public class Modul2 {
+public class Modul2 : IModul2 {
 
 	public CollectionDescription m_CollectionDescription;
 
@@ -25,4 +25,7 @@ public class Modul2 {
 
 	}
 
+    
+
+    
 }//end Modul2

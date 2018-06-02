@@ -59,5 +59,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\projekat\projekat.csproj">
+      <Project>{3bfdd3d2-c074-4a8c-be20-8e19bf3c185b}</Project>
+      <Name>projekat</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
