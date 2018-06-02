@@ -15,7 +15,7 @@ using System.IO;
 
 public class Reader : IReader {
 
-	public Modul2 m_Modul2;
+	public IModul2 m_Modul2;
 
 	public Reader(){
 
