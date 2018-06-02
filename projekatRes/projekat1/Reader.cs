@@ -12,7 +12,6 @@ using System.Text;
 using System.IO;
 
 
-
 public class Reader : IReader {
 
 	public IModul2 m_Modul2;
@@ -24,5 +23,32 @@ public class Reader : IReader {
 	~Reader(){
 
 	}
+    public bool ReadDataFromModul2(Code code, DateTime start, DateTime end) {
+        m_Modul2 = new Modul2();
+        List<CollectionDescription> returnList = new List<CollectionDescription>();
 
+        returnList = m_Modul2.ReadDataForReader(code);
+            if (returnList.Count != 0)
+            {
+                Console.WriteLine("------------------------------------------------");
+                Console.WriteLine("-------Element list for {0} code: -----", code);
+                Console.WriteLine("------------------------------------------------");
+
+                foreach (CollectionDescription item in returnList)
+                {
+                    if (item.timeStamp >= start && item.timeStamp <= end)
+                    {
+                        Console.WriteLine(item);
+                        Console.WriteLine("***********************************");
+                    }
+                Console.WriteLine("------------------------------------------------");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Fajl za {0} code je prazan...");
+            }
+            return true;
+        }
+   
 }//end Reader
