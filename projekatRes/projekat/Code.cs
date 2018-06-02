@@ -27,9 +27,9 @@ public enum Code : int {
 
 }//end Code
 
-class Codes
+public class Codes
 {
-    public static int GetDataset(Code code)
+    public int GetDataset(Code code)
     {
         switch (code)
         {

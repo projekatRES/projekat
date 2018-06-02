@@ -10,15 +10,18 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-
-
+using projekat;
+using projekat1;
 
 public class Modul1 : IModul1 {
 
-	public Modul2 m_Modul2;
-	public ListDescription m_ListDescription;
+    
+    public ListDescription m_ListDescription = new ListDescription(); //Dumping Buffer komponenta radi sa LD strukturom i to skladisti
+    public IModul2 m_Modul2 = new Modul2();
+    public bool check = false;
+    public bool writeToModul2 = false;
 
-	public Modul1(){
+    public Modul1(){
 
 	}
 
@@ -26,4 +29,78 @@ public class Modul1 : IModul1 {
 
 	}
 
+    public bool ReceiveFromInput(Code code, int value)
+    {
+        foreach (Description d in m_ListDescription.m_Description)
+        {
+            foreach (Modul1Property dpp in d._m1Property)
+            {
+                if (dpp.Code == code)
+                {
+                    dpp.Value = value;
+                    check = true;
+                }
+            }
+        }
+        if (check == false)
+        {
+
+            Modul1Property dp = new Modul1Property();
+            dp.Code = code;
+            dp.Value = value;
+
+            Description des = new Description();
+            des._m1Property.Add(dp);
+            des.Id = (int)((DateTime.Now.Ticks / 10) % 1000000000);
+
+            Codes codes = new Codes();
+            des.Dataset = codes.GetDataset(dp.Code);
+
+            if (m_ListDescription.m_Description.Count > 0)
+            {
+                foreach (Description d in m_ListDescription.m_Description)
+                {
+                    if ((d.Dataset == des.Dataset) && (d._m1Property[0].Value != des._m1Property[0].Value))
+                    {
+                        /*  Kad Dumping Buffer u svojoj kolekciji nakupi 2 razlicite vrednosti u okviru istog dataset-a, 
+                            tada prosledjuje podatke Historical komponenti (WriteToHistory).*/
+                        writeToModul2 = true;
+                    }
+                }
+            }
+
+            m_ListDescription.m_Description.Add(des);
+            Logger.Log("\n\nAdding new Description in ListDescription of Modul2\nData: " + des._m1Property[0].Code + ", " + des._m1Property[0].Value + "\nTime:" + DateTime.Now);
+
+        }
+        else
+        {
+            Logger.Log("Modul1Property with Code value " + code + " already exists, his value is now updated to " + value + "\nTime: " + DateTime.Now);
+            check = false;
+        }
+
+        if (writeToModul2 == true)
+        {
+            /* Tom prilikom Modul1 prosledjuje Historical komponenti svoju strukturu – LD. */
+            Logger.Log("\nFound two different values of same DataSet.\nSending ListDescription to Modul2.\n");
+
+            m_Modul2.ReceiveFromModul1(m_ListDescription);
+
+            m_ListDescription.m_Description.Clear();
+            writeToModul2 = false;
+            if (m_ListDescription.m_Description.Count == 0)
+            {
+                Logger.Log("Clear Modul1 after sending data to Modul2.\n");
+            }
+
+        }
+        else
+        {
+            Logger.Log("Two different values of same DataSet still not found.\nData being buffered.\n");
+        }
+
+        return true;
+
+
+    }
 }//end Modul1
