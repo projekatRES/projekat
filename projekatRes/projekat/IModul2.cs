@@ -13,6 +13,7 @@ using System.IO;
 
 
 
+
 public interface IModul2 {
     bool ReceiveFromInput(Code code, int value);
     bool ReceiveFromModul1(ListDescription listDescription);

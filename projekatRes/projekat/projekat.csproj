@@ -43,10 +43,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code.cs" />
+    <Compile Include="CollectionDescription.cs" />
+    <Compile Include="Description.cs" />
+    <Compile Include="HistoricalCollection.cs" />
     <Compile Include="IInput.cs" />
     <Compile Include="IModul1.cs" />
     <Compile Include="IModul2.cs" />
     <Compile Include="IReader.cs" />
+    <Compile Include="ListDescription.cs" />
+    <Compile Include="Modul1Property.cs" />
+    <Compile Include="Modul2Property.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

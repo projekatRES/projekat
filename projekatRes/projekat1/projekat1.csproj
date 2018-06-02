@@ -42,16 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CollectionDescription.cs" />
-    <Compile Include="Description.cs" />
-    <Compile Include="HistoricalCollection.cs" />
     <Compile Include="Input.cs" />
-    <Compile Include="ListDescription.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Modul1.cs" />
-    <Compile Include="Modul1Property.cs" />
     <Compile Include="Modul2.cs" />
-    <Compile Include="Modul2Property.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reader.cs" />
