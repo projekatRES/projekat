@@ -16,7 +16,7 @@ using System.IO;
 public class Modul2Property {
 
     private Code code;
-    private int historicalValue;
+    private int modul2Value;
 
     public Modul2Property()
     {
@@ -36,15 +36,15 @@ public class Modul2Property {
         }
     }
 
-    public int HistoricalValue
+    public int Modul2Value
     {
         get
         {
-            return historicalValue;
+            return modul2Value;
         }
         set
         {
-            historicalValue = value;
+            modul2Value = value;
         }
     }
 

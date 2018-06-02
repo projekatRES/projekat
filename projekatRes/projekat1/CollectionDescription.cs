@@ -18,8 +18,9 @@ public class CollectionDescription {
 	private int dataset;
 	private int id;
 	public HistoricalCollection m_HistoricalCollection;
+    public DateTime timeStamp;
 
-	public CollectionDescription(){
+    public CollectionDescription(){
 
 	}
 
@@ -36,5 +37,10 @@ public class CollectionDescription {
 		get{ return id; }
 		set{ id = value; }
 	}
+
+    public override string ToString()
+    {
+        return "ID: " + Id + ", DataSet: " + Dataset + ", Code: " + m_HistoricalCollection.m_Modul2Property[0].Code + "\nValue: " + m_HistoricalCollection.m_Modul2Property[0].Modul2Value +"\n TimeStamp: " + timeStamp + "\n";
+        }
 
 }//end CollectionDescription
