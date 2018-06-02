@@ -15,6 +15,6 @@ using System.IO;
 
 public interface IInput  {
     bool WriteToModul2();
-    bool WriteToModul1();
+    void WriteToModul1();
 
 }//end IInput

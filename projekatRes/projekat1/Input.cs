@@ -66,7 +66,7 @@ public class Input : IInput {
 
    
     // salje direktno podatke Modulu1 na svake 3 sekunde
-    public bool WriteToModul1()
+    public void WriteToModul1()
     {
         bool res= true;
         while ( res == true)
@@ -79,7 +79,7 @@ public class Input : IInput {
             Thread.Sleep(2000);
         }
 
-        return res;
+        //return res;
         // res nikad nece vratiti true, dokle god je true nece izaci iz fje
     }
 
