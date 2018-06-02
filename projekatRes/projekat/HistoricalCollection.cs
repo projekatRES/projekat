@@ -15,7 +15,7 @@ using System.IO;
 
 public class HistoricalCollection {
 
-	public List<Modul2Property> m_Modul2Property;
+	public Modul2Property[] m_Modul2Property = new Modul2Property[1];
 
 	public HistoricalCollection(){
 
