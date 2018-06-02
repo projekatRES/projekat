@@ -15,33 +15,37 @@ using System.IO;
 
 public class Modul2Property {
 
-	private Code code;
-	private int modul2Value;
+    private Code code;
+    private int historicalValue;
 
-	public Modul2Property(){
+    public Modul2Property()
+    {
 
-	}
+    }
 
-	~Modul2Property(){
 
-	}
+    public Code Code
+    {
+        get
+        {
+            return code;
+        }
+        set
+        {
+            code = value;
+        }
+    }
 
-	public Code Code{
-		get{
-			return code;
-		}
-		set{
-			code = value;
-		}
-	}
-
-	public int Modul2Value{
-		get{
-			return modul2Value;
-		}
-		set{
-			modul2Value = value;
-		}
-	}
+    public int HistoricalValue
+    {
+        get
+        {
+            return historicalValue;
+        }
+        set
+        {
+            historicalValue = value;
+        }
+    }
 
 }//end Modul2Property
