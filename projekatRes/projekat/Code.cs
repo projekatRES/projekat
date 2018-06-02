@@ -20,7 +20,7 @@ public enum Code : int {
 	CODE_DIGITAL,
 	CODE_CUSTOM,
 	CODE_LIMITSET,
-	CODE_SINGLENOE,
+	CODE_SINGLENODE,
 	CODE_MULTIPLENODE,
 	CODE_CONSUMER,
 	CODE_SOURCE
@@ -41,7 +41,7 @@ public class Codes
             case Code.CODE_LIMITSET:
                 return 2;
 
-            case Code.CODE_SINGLENOE:
+            case Code.CODE_SINGLENODE:
             case Code.CODE_MULTIPLENODE:
                 return 3;
 
