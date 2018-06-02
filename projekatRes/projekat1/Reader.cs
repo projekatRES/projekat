@@ -23,7 +23,8 @@ public class Reader : IReader {
 	~Reader(){
 
 	}
-    public bool ReadDataFromModul2(Code code, DateTime start, DateTime end) {
+    public bool ReadDataFromModul2(Code code, DateTime start, DateTime end)
+    {
         m_Modul2 = new Modul2();
         List<CollectionDescription> returnList = new List<CollectionDescription>();
 
