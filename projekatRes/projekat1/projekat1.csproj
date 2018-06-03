@@ -54,6 +54,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\projekat\projekat.csproj">
       <Project>{3bfdd3d2-c074-4a8c-be20-8e19bf3c185b}</Project>
       <Name>projekat</Name>

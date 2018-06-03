@@ -10,8 +10,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using projekat1;
+using projekat;
 using System.Threading;
+using projekat1;
 
 public class Input : IInput {
 
@@ -28,8 +29,13 @@ public class Input : IInput {
 
 
     // salje podatke Modulu2 koje unosi korisnik
-    public bool WriteToModul2()
+    public bool WriteToModul2(Code code, int value)
     {
+        Logger.Log("\n\nSending data from Writer directly to Historical\nData: " + code + ", " + value + "\nTime:" + DateTime.Now);
+        // m_Historical.ReceiveFromWriter(code, value);
+
+        return m_Modul2.ReceiveFromInput(code, value);
+/*
         Code code;
         int value;
         int i;
@@ -61,14 +67,19 @@ public class Input : IInput {
         bool m = m_Modul2.ReceiveFromInput(code, value);
         Logger.Log("\n\nSlanje podataka iz Inputa direktno u Modul1\nPodatak: " + code + ", " + value + "\nVreme:" + DateTime.Now);
         
-        return m;
+        return m;*/
     }
 
    
     // salje direktno podatke Modulu1 na svake 3 sekunde
-    public void WriteToModul1()
+    public bool WriteToModul1(Code code, int value)
     {
-        bool res= true;
+        Logger.Log("\n\nSending data from Writer to DumpingBuffer\nData: " + code + ", " + value + "\nTime:" + DateTime.Now);
+        //m_DumpingBuffer.ReceiveFromWriter(code, value);
+
+        return m_Modul1.ReceiveFromInput(code, value);
+/*
+        bool res = true;
         while ( res == true)
         {
             Random rnd = new Random();
@@ -81,6 +92,32 @@ public class Input : IInput {
 
         //return res;
         // res nikad nece vratiti true, dokle god je true nece izaci iz fje
+    */}
+
+
+    //Generise podatke koji ce biti poslati i poziva Input metode
+    public void GenerateData()
+    {
+        int counter = 0;
+        while (true)
+        {
+            Random rnd = new Random();
+            Code c = (Code)rnd.Next(8);
+            int value = rnd.Next(1000);
+
+            if (counter % 5 == 0)
+            {
+                WriteToModul2(c, value);
+            }
+            else
+            {
+                WriteToModul1(c, value);
+            }
+
+            counter++;
+
+            Thread.Sleep(3000);
+        }
     }
 
 }//end Input
