@@ -17,7 +17,7 @@ public class CollectionDescription {
 
 	private int dataset;
 	private int id;
-	public HistoricalCollection m_HistoricalCollection;
+    public HistoricalCollection m_HistoricalCollection = new HistoricalCollection();
     public DateTime timeStamp;
 
     public CollectionDescription(){
