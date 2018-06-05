@@ -50,7 +50,7 @@ namespace Tests
         }
 
         [Test]
-        public void ReceiveFromModul2BadParameter()
+        public void ReceiveFromModul1BadParameter()
         {
             Assert.Throws<ArgumentNullException>(() =>
             {
