@@ -14,6 +14,7 @@ namespace Tests
     {
         private IModul2 modul2;
 
+
         [TestFixtureSetUp]
         public void SetupMethods()
         {
