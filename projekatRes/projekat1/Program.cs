@@ -69,7 +69,7 @@ namespace projekat1
                     Console.Clear();
                     reader.ReadDataFromModul2(code, pocetak, kraj);
 
-                    Console.WriteLine("Da li zelite da nastavite (D/N) ? ");
+                    Console.WriteLine("Pritisnite bilo koji taster ako zelite da nastavite ili N/n ukoliko ne zelite. ");
                     c = Console.ReadLine();
                 }
                 catch (FormatException ex)
