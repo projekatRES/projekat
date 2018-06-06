@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using NSubstitute;
 using projekat1;
 
+
+//[TestFixture] - označava klasu koje sadrži testove i, opciono, metode za postavku i čišćenje testova(Setup & Teardown)//[Test] - označava određenu metodu, unutar test klase, da sadrži logiku samog testa// [TestFixtureSetUp] - označava metodu koja postavlja podešavanja na nivou klase.Izvršava se samo jednom, pre svih testova//[TestFixtureTearDown] - označava metodu koja vrši čišćenje na nivou klase. Izvršava se samo jednom, nakon što se izvrše svi testovi.
+
 namespace Tests
 {
     [TestFixture]
