@@ -16,9 +16,9 @@ using projekat1;
 public class Modul1 : IModul1 {
 
     
-    public ListDescription m_ListDescription = new ListDescription(); //Dumping Buffer komponenta radi sa LD strukturom i to skladisti
+    public ListDescription m_ListDescription = new ListDescription(); //modul1 komponenta radi sa LD strukturom i to skladisti
     public IModul2 m_Modul2 = new Modul2();
-    public bool check = false;
+    public bool check = false; // polje za validaciju
     public bool writeToModul2 = false;
 
     public Modul1(){
@@ -31,11 +31,11 @@ public class Modul1 : IModul1 {
 
     public bool ReceiveFromInput(Code code, int value)
     {
-        foreach (Description d in m_ListDescription.m_Description)
+        foreach (Description d in m_ListDescription.m_Description) // prolazi kroz lista deskriptiona koja se sastoji od klase deskription
         {
-            foreach (Modul1Property dpp in d._m1Property)
+            foreach (Modul1Property dpp in d._m1Property) // prolazi kroz listu modul1propertyja koja se sastoji od modul1prorpertija,coda i value
             {
-                if (dpp.Code == code)
+                if (dpp.Code == code) // ako postoji code vec u listi onda ce uzeti prosledjenu vrednost
                 {
                     dpp.Value = value;
                     check = true;
@@ -54,7 +54,7 @@ public class Modul1 : IModul1 {
             des.Id = (int)((DateTime.Now.Ticks / 10) % 1000000000);
 
             Codes codes = new Codes();
-            des.Dataset = codes.GetDataset(dp.Code);
+            des.Dataset = codes.GetDataset(dp.Code); //vraca vrednost dataseta
 
             if (m_ListDescription.m_Description.Count > 0)
             {
