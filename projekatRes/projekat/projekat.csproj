@@ -57,7 +57,9 @@
     <Compile Include="IModul2.cs" />
     <Compile Include="IReader.cs" />
     <Compile Include="ListDescription.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="Modul1Property.cs" />
+    <Compile Include="Modul2Helper.cs" />
     <Compile Include="Modul2Property.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
