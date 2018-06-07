@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using projekat;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +11,6 @@ namespace Tests
     class Modul2Test
     {
         Modul2 modul2 = null;
-        Modul2Helper modul2helper = null;
 
         Modul2Property modul2Property = null;
         HistoricalCollection historicalCollection = null;
@@ -103,7 +101,7 @@ namespace Tests
             Code c = code;
             int ds = dataSet;
 
-            Assert.IsTrue(modul2helper.ValidationCheck(c, dataSet));
+            Assert.IsTrue(modul2.ValidationCheck(c, dataSet));
         }
 
         [Test]
@@ -115,7 +113,7 @@ namespace Tests
             Code c = Code.CODE_ANALOG;
             int value = dataSet;
 
-            Assert.IsFalse(modul2helper.ValidationCheck(c, value));
+            Assert.IsFalse(modul2.ValidationCheck(c, value));
         }
 
         [Test]
@@ -127,7 +125,7 @@ namespace Tests
             Code c = Code.CODE_DIGITAL;
             int value = dataSet;
 
-            Assert.IsFalse(modul2helper.ValidationCheck(c, value));
+            Assert.IsFalse(modul2.ValidationCheck(c, value));
         }
 
         [Test]
@@ -139,7 +137,7 @@ namespace Tests
             Code c = Code.CODE_CUSTOM;
             int value = dataSet;
 
-            Assert.IsFalse(modul2helper.ValidationCheck(c, value));
+            Assert.IsFalse(modul2.ValidationCheck(c, value));
         }
 
 
@@ -152,7 +150,7 @@ namespace Tests
             Code c = Code.CODE_LIMITSET;
             int value = dataSet;
 
-            Assert.IsFalse(modul2helper.ValidationCheck(c, value));
+            Assert.IsFalse(modul2.ValidationCheck(c, value));
         }
 
         [Test]
@@ -164,7 +162,7 @@ namespace Tests
             Code c = Code.CODE_SINGLENODE;
             int value = dataSet;
 
-            Assert.IsFalse(modul2helper.ValidationCheck(c, value));
+            Assert.IsFalse(modul2.ValidationCheck(c, value));
         }
 
         [Test]
@@ -176,7 +174,7 @@ namespace Tests
             Code c = Code.CODE_MULTIPLENODE;
             int value = dataSet;
 
-            Assert.IsFalse(modul2helper.ValidationCheck(c, value));
+            Assert.IsFalse(modul2.ValidationCheck(c, value));
         }
 
         [Test]
@@ -188,7 +186,7 @@ namespace Tests
             Code c = Code.CODE_CONSUMER;
             int value = dataSet;
 
-            Assert.IsFalse(modul2helper.ValidationCheck(c, value));
+            Assert.IsFalse(modul2.ValidationCheck(c, value));
         }
 
         [Test]
@@ -200,7 +198,7 @@ namespace Tests
             Code c = Code.CODE_SOURCE;
             int value = dataSet;
 
-            Assert.IsFalse(modul2helper.ValidationCheck(c, value));
+            Assert.IsFalse(modul2.ValidationCheck(c, value));
         }
 
         [Test]
@@ -208,7 +206,7 @@ namespace Tests
         {
             Assert.Throws<ArgumentNullException>(() =>
             {
-                modul2helper.CheckDeadband(null);
+                modul2.CheckDeadband(null);
             });
         }
 
@@ -234,9 +232,9 @@ namespace Tests
             collDesc.timeStamp = DateTime.Now;
             collDesc.m_HistoricalCollection = histColl;
 
-            Assert.IsTrue(modul2helper.CheckDeadband(collDesc));
+            Assert.IsTrue(modul2.CheckDeadband(collDesc));
         }
-
+        
         [Test]
         public void CheckDeadbandTestOk1()
         {
@@ -249,7 +247,7 @@ namespace Tests
             collectionDescription.timeStamp = DateTime.Now;
             collectionDescription.m_HistoricalCollection = historicalCollection;
 
-            Assert.IsTrue(modul2helper.CheckDeadband(collectionDescription));
+            Assert.IsTrue(modul2.CheckDeadband(collectionDescription));
         }
 
         [Test]
@@ -286,7 +284,7 @@ namespace Tests
             // {
             //    historical.CheckDeadband(collDesc);
             // }); 
-            Assert.AreEqual(modul2helper.CheckDeadband(collDesc), false);
+            Assert.AreEqual(modul2.CheckDeadband(collDesc), false);
         }
 
         [Test]
@@ -296,7 +294,7 @@ namespace Tests
         [TestCase(4)]
         public void DESerializeListTest(int dataSet)
         {
-            Assert.IsNotNull(modul2helper.DeserializeList(dataSet));
+            Assert.IsNotNull(modul2.DeserializeList(dataSet));
         }
 
         [Test]
@@ -304,7 +302,7 @@ namespace Tests
         {
             Assert.Throws<ArgumentNullException>(() =>
             {
-                modul2helper.SerializeList(null);
+                modul2.SerializeList(null);
             });
         }
 
@@ -322,7 +320,7 @@ namespace Tests
             collectionDescription.m_HistoricalCollection = historicalCollection;
             Assert.Throws<ArgumentException>(() =>
             {
-                modul2helper.SerializeList(collectionDescription);
+                modul2.SerializeList(collectionDescription);
             });
         }
 
@@ -344,7 +342,7 @@ namespace Tests
         {
             Assert.Throws<ArgumentNullException>(() =>
             {
-                modul2helper.Serialize(null);
+                modul2.Serialize(null);
             });
         }
 
@@ -368,7 +366,7 @@ namespace Tests
             collDesc.Id = 12345;
             collDesc.timeStamp = DateTime.Now;
             collDesc.m_HistoricalCollection = histColl;
-            Assert.IsTrue(modul2helper.Serialize(collDesc));
+            Assert.IsTrue(modul2.Serialize(collDesc));
 
         }
 

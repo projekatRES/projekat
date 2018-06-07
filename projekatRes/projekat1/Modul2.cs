@@ -15,10 +15,15 @@ using System.Xml.Serialization;
 using projekat;
 
 public class Modul2 : IModul2 {
-    Modul2Helper helper = new Modul2Helper();
 
 	public CollectionDescription m_CollectionDescription;
     public Code help;
+    public List<CollectionDescription> cd1 = new List<CollectionDescription>();
+    public List<CollectionDescription> cd2 = new List<CollectionDescription>();
+    public List<CollectionDescription> cd3 = new List<CollectionDescription>();
+    public List<CollectionDescription> cd4 = new List<CollectionDescription>();
+
+    public Dictionary<Code, int> pairs = new Dictionary<Code, int>();
 
     public Modul2(){
 
@@ -57,11 +62,11 @@ public class Modul2 : IModul2 {
             m_CollectionDescription.Dataset = d.Dataset;
 
 
-            if (helper.ValidationCheck(m_CollectionDescription.m_HistoricalCollection.m_Modul2Property[0].Code, m_CollectionDescription.Dataset))
+            if (ValidationCheck(m_CollectionDescription.m_HistoricalCollection.m_Modul2Property[0].Code, m_CollectionDescription.Dataset))
             {
                 Logger.Log("\nReceiveFromModul1 u Modulu2 prepakovalo je posatke u ColectionDescription.\n");
                 Logger.Log("CD : " + m_CollectionDescription + "\n");
-                helper.Serialize(m_CollectionDescription);
+                Serialize(m_CollectionDescription);
             }
             else
             {
@@ -74,38 +79,111 @@ public class Modul2 : IModul2 {
         return true;
     }
 
-   
+    public bool ValidationCheck(Code code, int value)
+    {
+        pairs = new Dictionary<Code, int>();
+        pairs.Add(Code.CODE_ANALOG, 1);
+        pairs.Add(Code.CODE_DIGITAL, 1);
+        pairs.Add(Code.CODE_CUSTOM, 2);
+        pairs.Add(Code.CODE_LIMITSET, 2);
+        pairs.Add(Code.CODE_SINGLENODE, 3);
+        pairs.Add(Code.CODE_MULTIPLENODE, 3);
+        pairs.Add(Code.CODE_CONSUMER, 4);
+        pairs.Add(Code.CODE_SOURCE, 4);
+
+        //provera da li su vrednostri saglasne
+        foreach (KeyValuePair<Code, int> k in pairs)
+        {
+            if (k.Key == code)
+            {
+                if (k.Value == value)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    //skladisti objekat CD ako je validan Deadband
+    public bool Serialize(CollectionDescription cd)
+    {
+        if (cd != null)
+        {
+            if (CheckDeadband(cd))
+            {
+                cd.timeStamp = DateTime.Now;
+                if (SerializeList(cd))
+                {
+                    Logger.Log("\n\nCollectionDescription u Modulu2 je serijalizovan.\n");
+                    return true;
+                }
+
+                return false;
+
+            }
+            else
+            {
+                Logger.Log("\n\nCollectionDescription u Modulu2 nije serijalizovan.\n Njegova vrednost nije 2% veca od njegove stare vrednosti.\n");
+                return false;
+            }
+        }
+        else
+        {
+            throw new ArgumentNullException("cd");
+        }
+    }
+
+    public bool CheckDeadband(CollectionDescription primljeniPodaci)
+    {
+
+        List<CollectionDescription> procitaniPodaci = null;
+        if (primljeniPodaci == null)
+        {
+            throw new ArgumentNullException("cd");
+        }
+        if (primljeniPodaci.m_HistoricalCollection.m_Modul2Property[0].Code.Equals(Code.CODE_DIGITAL))
+        {
+            return true;
+        }
+        procitaniPodaci = DeserializeList(primljeniPodaci.Dataset);
+
+        if (procitaniPodaci.Count == 0)
+            return true;
+
+        foreach (CollectionDescription item in procitaniPodaci)
+        {
+            if (item.m_HistoricalCollection.m_Modul2Property[0].Code == primljeniPodaci.m_HistoricalCollection.m_Modul2Property[0].Code)
+            {
+                if (primljeniPodaci.m_HistoricalCollection.m_Modul2Property[0].Modul2Value < (item.m_HistoricalCollection.m_Modul2Property[0].Modul2Value * 1.02))
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
     public List<CollectionDescription> ReadDataForReader(Code code)
     {
         List<CollectionDescription> pomocnaLista = new List<CollectionDescription>();
         List<CollectionDescription> pomocnaLista2 = new List<CollectionDescription>();
-        switch(code)
+
+        if ((code == Code.CODE_ANALOG) || (code == Code.CODE_DIGITAL))
         {
-            case Code.CODE_ANALOG:
-                pomocnaLista = helper.DeserializeList(1);
-                break;
-            case Code.CODE_DIGITAL:
-                pomocnaLista = helper.DeserializeList(1);
-                break;
-            case Code.CODE_LIMITSET:
-                pomocnaLista = helper.DeserializeList(2);
-                break;
-            case Code.CODE_CUSTOM:
-                pomocnaLista = helper.DeserializeList(2);
-                break;
-            case Code.CODE_MULTIPLENODE:
-                pomocnaLista = helper.DeserializeList(3);
-                break;
-            case Code.CODE_SINGLENODE:
-                pomocnaLista = helper.DeserializeList(3);
-                break;
-            case Code.CODE_CONSUMER:
-                pomocnaLista = helper.DeserializeList(4);
-                break;
-            case Code.CODE_SOURCE:
-                pomocnaLista = helper.DeserializeList(4);
-                break;
+            pomocnaLista = DeserializeList(1);
+        }
+        else if ((code == Code.CODE_CUSTOM) || (code == Code.CODE_LIMITSET))
+        {
+            pomocnaLista = DeserializeList(2);
+        }
+        else if ((code == Code.CODE_SINGLENODE) || (code == Code.CODE_MULTIPLENODE))
+        {
+            pomocnaLista = DeserializeList(3);
+        }
+        else
+        {
+            pomocnaLista = DeserializeList(4);
         }
 
         if (pomocnaLista.Count > 0)
@@ -120,6 +198,76 @@ public class Modul2 : IModul2 {
         }
         return pomocnaLista2;
     }
+
+    public List<CollectionDescription> DeserializeList(int dataSet)
+    {
+        List<CollectionDescription> pomocnaLista = new List<CollectionDescription>();
+        switch(dataSet)
+        {
+            case 1:
+                if (!File.Exists("CollectionDescription1.xml"))
+                    File.Create("CollectionDescription1.xml").Dispose();
+                pomocnaLista = DataBase.serializer.DeSerializeObject<List<CollectionDescription>>("CollectionDescription1.xml");
+                break;
+            case 2:
+                if (!File.Exists("CollectionDescription2.xml"))
+                    File.Create("CollectionDescription2.xml").Dispose();
+                pomocnaLista = DataBase.serializer.DeSerializeObject<List<CollectionDescription>>("CollectionDescription2.xml");
+                break;
+
+            case 3:
+                if (!File.Exists("CollectionDescription3.xml"))
+                    File.Create("CollectionDescription3.xml").Dispose();
+                pomocnaLista = DataBase.serializer.DeSerializeObject<List<CollectionDescription>>("CollectionDescription3.xml");
+                break;
+            case 4:
+                if (!File.Exists("CollectionDescription4.xml"))
+                    File.Create("CollectionDescription4.xml").Dispose();
+                pomocnaLista = DataBase.serializer.DeSerializeObject<List<CollectionDescription>>("CollectionDescription4.xml");
+                break;
+
+        }
+        if (pomocnaLista == null)
+        {
+            pomocnaLista = new List<CollectionDescription>();
+        }
+        return pomocnaLista;
+    }
+
+    public bool SerializeList(CollectionDescription cd)
+    {
+        if (cd == null)
+        {
+            throw new ArgumentNullException("cd");
+        }
+        switch(cd.Dataset)
+        {
+            case 1:
+                cd1 = DeserializeList(1);
+                cd1.Add(cd);
+                DataBase.serializer.SerializeObject<List<CollectionDescription>>(cd1, "CollectionDescription1.xml");
+                return true;
+            case 2:
+                cd2 = DeserializeList(2);
+                cd2.Add(cd);
+                DataBase.serializer.SerializeObject<List<CollectionDescription>>(cd2, "CollectionDescription2.xml");
+                return true;
+            case 3:
+                cd3 = DeserializeList(3);
+                cd3.Add(cd);
+                DataBase.serializer.SerializeObject<List<CollectionDescription>>(cd3, "CollectionDescription3.xml");
+                return true;
+            case 4:
+                cd4 = DeserializeList(4);
+                cd4.Add(cd);
+                DataBase.serializer.SerializeObject<List<CollectionDescription>>(cd4, "CollectionDescription4.xml");
+                return true;
+            default:
+                throw new ArgumentException("Dataset nije validan.");
+        }
+
+    }
+
 
     public bool ReceiveFromInput(Code code, int value)
     {
@@ -136,11 +284,11 @@ public class Modul2 : IModul2 {
             Codes codes = new Codes();
             m_CollectionDescription.Dataset = codes.GetDataset(code);
 
-            if (helper.ValidationCheck(m_CollectionDescription.m_HistoricalCollection.m_Modul2Property[0].Code, m_CollectionDescription.Dataset))
+            if (ValidationCheck(m_CollectionDescription.m_HistoricalCollection.m_Modul2Property[0].Code, m_CollectionDescription.Dataset))
             {
-                Logger.Log("Metoda ReceiveFromInput u Modulu2 je konvertovala primljene podatke u CollectionDescription");
+                Logger.Log("ReceiveFromInput u Modulu2 je konvertovala primljene podatke u CollectionDescription");
                 Logger.Log("CD : " + m_CollectionDescription + "\n");
-                helper.Serialize(m_CollectionDescription);
+                Serialize(m_CollectionDescription);
             }
             else
             {

@@ -23,7 +23,7 @@ public class Modul1Property
 
     }
 
-    public Modul1Property(Code code, int value)
+   /* public Modul1Property(Code code, int value)
     {
         if (value == null)
         {
@@ -36,7 +36,7 @@ public class Modul1Property
         _code = code;
         _value = value;
 
-    }
+    }*/
 
     public Code Code
     {
