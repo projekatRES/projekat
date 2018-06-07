@@ -210,7 +210,7 @@ namespace Tests
             });
         }
 
-        [Test]
+       /* [Test]
         [TestCase(Code.CODE_ANALOG, 922, 1)]
         [TestCase(Code.CODE_LIMITSET, 904, 2)]
         [TestCase(Code.CODE_CUSTOM, 946, 2)]
@@ -233,7 +233,7 @@ namespace Tests
             collDesc.m_HistoricalCollection = histColl;
 
             Assert.IsTrue(modul2.CheckDeadband(collDesc));
-        }
+        }*/
         
         [Test]
         public void CheckDeadbandTestOk1()
@@ -346,7 +346,7 @@ namespace Tests
             });
         }
 
-        [Test]
+        /*[Test]
         [TestCase(Code.CODE_ANALOG, 922, 1)]
         [TestCase(Code.CODE_LIMITSET, 904, 2)]
         [TestCase(Code.CODE_CUSTOM, 946, 2)]
@@ -363,12 +363,12 @@ namespace Tests
 
             CollectionDescription collDesc = new CollectionDescription();
             collDesc.Dataset = dataSet;
-            collDesc.Id = 12345;
+            collDesc.Id = 1235;
             collDesc.timeStamp = DateTime.Now;
             collDesc.m_HistoricalCollection = histColl;
             Assert.IsTrue(modul2.Serialize(collDesc));
 
-        }
+        }*/
 
         [Test]
         [TestCase(Code.CODE_ANALOG, 143)]

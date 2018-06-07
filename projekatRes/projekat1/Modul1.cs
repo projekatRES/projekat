@@ -25,9 +25,7 @@ public class Modul1 : IModul1 {
 
 	}
 
-	~Modul1(){
-
-	}
+	
 
     public bool ReceiveFromInput(Code code, int value)
     {
