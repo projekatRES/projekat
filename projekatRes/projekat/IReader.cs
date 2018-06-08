@@ -12,9 +12,8 @@ using System.Text;
 using System.IO;
 
 
-
 public interface IReader  {
 
     bool ReadDataFromModul2(Code code, DateTime start, DateTime end);
 
-}//end IReader
+}

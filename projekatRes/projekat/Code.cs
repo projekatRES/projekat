@@ -27,6 +27,8 @@ public enum Code : int {
 
 }//end Code
 
+// klasa koja vraca vrednost 1-4 u zavisnosti koji je Code u pitanju
+
 public class Codes
 {
     public int GetDataset(Code code)

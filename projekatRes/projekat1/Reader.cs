@@ -31,16 +31,16 @@ public class Reader : IReader {
         returnList = m_Modul2.ReadDataForReader(code);
             if (returnList.Count != 0)
             {
-                Console.WriteLine("------------------------------------------------");
-                Console.WriteLine("-------Element list for {0} code: -----", code);
-                Console.WriteLine("------------------------------------------------");
+                Console.WriteLine("");
+                Console.WriteLine("-------Element liste za {0} code: -----", code);
+                Console.WriteLine("");
 
                 foreach (CollectionDescription item in returnList)
                 {
                     if (item.timeStamp >= start && item.timeStamp <= end)
                     {
                         Console.WriteLine(item);
-                        Console.WriteLine("***********************************");
+                        Console.WriteLine("");
                     }
                 Console.WriteLine("------------------------------------------------");
                 }
@@ -52,4 +52,4 @@ public class Reader : IReader {
             return true;
         }
    
-}//end Reader
+}

@@ -22,8 +22,6 @@ namespace projekat1
             inputThread.Start();
 
             Meni(reader);
-
-
            
             inputThread.Abort();
             //File.Delete("CollectionDescription1.xml");
@@ -38,8 +36,7 @@ namespace projekat1
             {
                 try
                 {
-                    Console.WriteLine("Izberite interval: ");
-                    Console.WriteLine("Pocetak: ");
+                    Console.WriteLine("IZABERITE INTERVAL ZA POCETAK");
                     Console.WriteLine("Unesite sat: ");
                     int satPocetak = int.Parse(Console.ReadLine());
                     Console.WriteLine("Unesite minut: ");
@@ -48,8 +45,7 @@ namespace projekat1
                     int sekundaPocetak = int.Parse(Console.ReadLine());
                     DateTime pocetak = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, satPocetak, minutPocetak, sekundaPocetak);
 
-                    Console.WriteLine("Izberite interval: ");
-                    Console.WriteLine("Kraj: ");
+                    Console.WriteLine("IZABERITE INTERVAL ZA KRAJ");
                     Console.WriteLine("Unesite sat: ");
                     int satKraj = int.Parse(Console.ReadLine());
                     Console.WriteLine("Unesite minut: ");
@@ -59,30 +55,26 @@ namespace projekat1
                     DateTime kraj = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, satKraj, minutKraj, sekundaKraj);
 
                     Console.WriteLine("Izaberite CODE: ");
-                    Console.WriteLine("1. CODE_ANALOG");
-                    Console.WriteLine("2. CODE_DIGITAL");
-                    Console.WriteLine("3. CODE_CUSTOM");
-                    Console.WriteLine("4. CODE_LIMITSET");
-                    Console.WriteLine("5. CODE_SINGLENODE");
-                    Console.WriteLine("6. CODE_MULTIPLENODE");
-                    Console.WriteLine("7. CODE_CONSUMER");
-                    Console.WriteLine("8. CODE_SOURCE");
+                    Console.WriteLine("1. CODE_ANALOG       2. CODE_DIGITAL");
+                    Console.WriteLine("3. CODE_CUSTOM       4. CODE_LIMITSET");
+                    Console.WriteLine("5. CODE_SINGLENODE   6. CODE_MULTIPLENODE");
+                    Console.WriteLine("7. CODE_CONSUMER     8. CODE_SOURCE");
                     Console.WriteLine("\n\t>>");
                     Code code = (Code)(int.Parse(Console.ReadLine()) - 1);
 
                     Console.Clear();
                     reader.ReadDataFromModul2(code, pocetak, kraj);
 
-                    Console.WriteLine("Pritisnite bilo koji taster ako zelite da nastavite ili N/n ukoliko ne zelite. ");
+                    Console.WriteLine("Pritisnite bilo koji taster ako zelite da nastavite ili 'N/n' ukoliko ne zelite. ");
                     c = Console.ReadLine();
                 }
                 catch (FormatException ex)
                 {
-                    Console.WriteLine("Pogresan input .. Pokusajte ponovo. Exception: " + ex.Message);
+                    Console.WriteLine("Pokusajte ponovo.Greska: " + ex.Message);
                 }
                 catch (ArgumentNullException ex)
                 {
-                    Console.WriteLine("Pogresan input .. Pokusajte ponovo. Exception: " + ex.Message);
+                    Console.WriteLine("Pokusajte ponovo.Greska: " + ex.Message);
                 }
 
             } while (c != "N" && c != "n");

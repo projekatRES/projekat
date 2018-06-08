@@ -13,11 +13,9 @@ using System.IO;
 using projekat;
 
 
-
 public class ListDescription {
 
     public List<Description> m_Description = new List<Description>();
-
 
     public ListDescription(){
 
@@ -27,4 +25,4 @@ public class ListDescription {
 
 	}
 
-}//end ListDescription
+}

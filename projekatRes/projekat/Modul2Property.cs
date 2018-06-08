@@ -12,7 +12,6 @@ using System.Text;
 using System.IO;
 
 
-
 public class Modul2Property {
 
     private Code code;
@@ -23,29 +22,16 @@ public class Modul2Property {
 
     }
 
-
     public Code Code
     {
-        get
-        {
-            return code;
-        }
-        set
-        {
-            code = value;
-        }
+        get { return code; }
+        set { code = value; }
     }
 
     public int Modul2Value
     {
-        get
-        {
-            return modul2Value;
-        }
-        set
-        {
-            modul2Value = value;
-        }
+        get { return modul2Value; }
+        set { modul2Value = value; }
     }
 
-}//end Modul2Property
+}

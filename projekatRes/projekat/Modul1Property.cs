@@ -40,26 +40,14 @@ public class Modul1Property
 
     public Code Code
     {
-        get
-        {
-            return _code;
-        }
-        set
-        {
-            _code = value;
-        }
+        get { return _code; }
+        set { _code = value; }
     }
 
     public int Value
     {
-        get
-        {
-            return _value;
-        }
-        set
-        {
-            _value = value;
-        }
+        get { return _value; }
+        set { _value = value; }
     }
 
     public override string ToString()

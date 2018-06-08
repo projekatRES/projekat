@@ -30,32 +30,17 @@ public class Description
         this._m1Property = m1p;
     }
 
-    #region Getters / Setters
     public int Dataset
     {
-        get
-        {
-            return _dataset;
-        }
-        set
-        {
-            _dataset = value;
-        }
+        get { return _dataset; }
+        set { _dataset = value; }
     }
 
     public int Id
     {
-        get
-        {
-            return _id;
-        }
-        set
-        {
-            _id = value;
-        }
+        get { return _id; }
+        set { _id = value; }
     }
-
-    #endregion Getters / Setters
 
    /* public bool AddValue(Modul1Property property)
     {

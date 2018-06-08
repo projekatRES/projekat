@@ -17,7 +17,7 @@ public class CollectionDescription {
 
 	private int dataset;
 	private int id;
-    public HistoricalCollection m_HistoricalCollection = new HistoricalCollection();
+    public HistoricalCollection m_HistoricalCollection = new HistoricalCollection(); // HistoricalCollection - niz modul2propertyja
     public DateTime timeStamp;
 
     public CollectionDescription(){

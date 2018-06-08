@@ -14,7 +14,6 @@ using projekat;
 using projekat1;
 
 public class Modul1 : IModul1 {
-
     
     public ListDescription m_ListDescription = new ListDescription(); //modul1 komponenta radi sa LD strukturom i to skladisti
     public IModul2 m_Modul2 = new Modul2();
@@ -24,8 +23,6 @@ public class Modul1 : IModul1 {
     public Modul1(){
 
 	}
-
-	
 
     public bool ReceiveFromInput(Code code, int value)
     {
@@ -68,19 +65,19 @@ public class Modul1 : IModul1 {
             }
 
             m_ListDescription.m_Description.Add(des);
-            Logger.Log("\n\nAdding new Description in ListDescription of Modul2\nData: " + des._m1Property[0].Code + ", " + des._m1Property[0].Value + "\nTime:" + DateTime.Now);
+            Logger.Log("\n\nDodavanje novog Description-a u Listu Description Modula2\nData: " + des._m1Property[0].Code + ", " + des._m1Property[0].Value + "\nVreme:" + DateTime.Now);
 
         }
         else
         {
-            Logger.Log("Modul1Property with Code value " + code + " already exists, his value is now updated to " + value + "\nTime: " + DateTime.Now);
+            Logger.Log("Modul1Property sa vrednoscu Coda " + code + " vec postoji, njegova vrednost je sad postavljena na " + value + "\nVreme: " + DateTime.Now);
             check = false;
         }
 
         if (writeToModul2 == true)
         {
             /* Tom prilikom Modul1 prosledjuje Modul2 komponenti svoju strukturu – LD. */
-            Logger.Log("\nFound two different values of same DataSet.\nSending ListDescription to Modul2.\n");
+            Logger.Log("\nNadjene dve razlicite vrednosti istog DataSet-a.\nSlanje ListDescription-a Modulu2.\n");
 
             m_Modul2.ReceiveFromModul1(m_ListDescription);
 
@@ -94,11 +91,8 @@ public class Modul1 : IModul1 {
         }
         else
         {
-            Logger.Log("Dve razlicite vrednosti od istog Dataset-a jos nisu pronadjene.\nPodaci su baferovani.\n");
+            Logger.Log("Dve razlicite vrednosti od istog Dataset-a jos nisu pronadjene.\n");
         }
-
         return true;
-
-
     }
-}//end Modul1
+}
