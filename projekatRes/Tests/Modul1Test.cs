@@ -53,7 +53,7 @@ namespace Tests
         public void Modul1Constructor()
         {
             Modul1 modul1 = new Modul1();
-            Assert.AreEqual(modul1, null);
+            Assert.AreNotEqual(modul1, null);
         }
 
         [Test]

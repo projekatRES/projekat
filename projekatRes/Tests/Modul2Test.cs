@@ -261,10 +261,7 @@ namespace Tests
         public void CheckDeadbandTestNotOk(Code code, int value, int dataSet)
         {
             Modul2Property hp = new Modul2Property() { Code = code, Modul2Value = value };
-            //  historicalProperty.Code = code; //ako value nije veza od 2% od stare vresdnosti vratise false
-            //  historicalProperty.HistoricalValue = value;
-
-            // historicalCollection.m_HistoricalProperty[0] = historicalProperty;
+          
 
             HistoricalCollection histColl = new HistoricalCollection();
             histColl.m_Modul2Property[0] = hp;
@@ -275,15 +272,7 @@ namespace Tests
             collDesc.timeStamp = DateTime.Now;
             collDesc.m_HistoricalCollection = histColl;
 
-            // collectionDescription.DataSet = dataSet;
-            //collectionDescription.Id = 12345;
-            // collectionDescription.timeStamp = DateTime.Now;
-            // collectionDescription.m_HistoricalCollection = historicalCollection;
-
-            //Assert.Throws<Exception>(() =>
-            // {
-            //    historical.CheckDeadband(collDesc);
-            // }); 
+            
             Assert.AreEqual(modul2.CheckDeadband(collDesc), false);
         }
 
