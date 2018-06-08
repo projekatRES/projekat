@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -9,8 +10,10 @@ namespace projekat1
 {
     class Program
     {
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
+            Logger logger = new Logger();
+            logger.Delete();
             Reader reader = new Reader();
 
             Input input = new Input();
@@ -21,9 +24,10 @@ namespace projekat1
             Meni(reader);
 
 
-            Console.ReadKey();
-           // inputThread.Abort();
-            //return;
+           
+            inputThread.Abort();
+            //File.Delete("CollectionDescription1.xml");
+            return 0;
         }
 
         private static void Meni(Reader reader)
@@ -82,6 +86,8 @@ namespace projekat1
                 }
 
             } while (c != "N" && c != "n");
+
+            return;
         }
     }
 }

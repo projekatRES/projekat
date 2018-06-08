@@ -20,5 +20,9 @@ namespace projekat1
                 Console.WriteLine(ex.Message);
             }
         }
+        public void Delete()
+        {
+            File.WriteAllText("Logger.txt", "");
+        }
     }
 }
