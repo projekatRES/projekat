@@ -22,7 +22,7 @@ public class Description
 
     public Description()
     {
-        _m1Property = new List<Modul1Property>();
+        //_m1Property = new List<Modul1Property>();
     }
 
     public Description(List<Modul1Property> m1p)
@@ -57,7 +57,7 @@ public class Description
 
     #endregion Getters / Setters
 
-    public bool AddValue(Modul1Property property)
+   /* public bool AddValue(Modul1Property property)
     {
         if (property == null)
         {
@@ -89,6 +89,6 @@ public class Description
         {
             throw ex;
         }
-    }
+    }*/
 
 }

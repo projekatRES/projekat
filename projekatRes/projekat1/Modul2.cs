@@ -18,10 +18,10 @@ public class Modul2 : IModul2 {
 
 	public CollectionDescription m_CollectionDescription;
     public Code help;
-    public List<CollectionDescription> col1 = new List<CollectionDescription>();
-    public List<CollectionDescription> col2 = new List<CollectionDescription>();
-    public List<CollectionDescription> col3 = new List<CollectionDescription>();
-    public List<CollectionDescription> col4 = new List<CollectionDescription>();
+    public List<CollectionDescription> cd1 = new List<CollectionDescription>();
+    public List<CollectionDescription> cd2 = new List<CollectionDescription>();
+    public List<CollectionDescription> cd3 = new List<CollectionDescription>();
+    public List<CollectionDescription> cd4 = new List<CollectionDescription>();
 
     public Dictionary<Code, int> pairs = new Dictionary<Code, int>();
 
@@ -134,33 +134,30 @@ public class Modul2 : IModul2 {
         }
     }
 
-    public bool CheckDeadband(CollectionDescription primljeniDescription)
+    public bool CheckDeadband(CollectionDescription primljeniPodaci)
     {
 
         List<CollectionDescription> procitaniPodaci = null;
-        if (primljeniDescription == null)
+        if (primljeniPodaci == null)
         {
             throw new ArgumentNullException("cd");
         }
-        if (primljeniDescription.m_HistoricalCollection.m_Modul2Property[0].Code.Equals(Code.CODE_DIGITAL))
+        if (primljeniPodaci.m_HistoricalCollection.m_Modul2Property[0].Code.Equals(Code.CODE_DIGITAL))
         {
             return true;
         }
-        procitaniPodaci = DESerializeList(primljeniDescription.Dataset);
+        procitaniPodaci = DeserializeList(primljeniPodaci.Dataset);
 
         if (procitaniPodaci.Count == 0)
             return true;
 
         foreach (CollectionDescription item in procitaniPodaci)
         {
-            if (item.m_HistoricalCollection.m_Modul2Property[0].Code == primljeniDescription.m_HistoricalCollection.m_Modul2Property[0].Code)
+            if (item.m_HistoricalCollection.m_Modul2Property[0].Code == primljeniPodaci.m_HistoricalCollection.m_Modul2Property[0].Code)
             {
-                if (primljeniDescription.m_HistoricalCollection.m_Modul2Property[0].Modul2Value < (item.m_HistoricalCollection.m_Modul2Property[0].Modul2Value * 1.02))
+                if (primljeniPodaci.m_HistoricalCollection.m_Modul2Property[0].Modul2Value < (item.m_HistoricalCollection.m_Modul2Property[0].Modul2Value * 1.02))
                 {
-                    //Console.WriteLine("poredi " + primljeniDescription.m_HistoricalCollection.m_HistoricalProperty[0].HistoricalValue);
-                    //Console.WriteLine();
                     return false;
-                    //throw new Exception("Molim te ko boga");
                 }
             }
         }
@@ -174,19 +171,19 @@ public class Modul2 : IModul2 {
 
         if ((code == Code.CODE_ANALOG) || (code == Code.CODE_DIGITAL))
         {
-            pomocnaLista = DESerializeList(1);
+            pomocnaLista = DeserializeList(1);
         }
         else if ((code == Code.CODE_CUSTOM) || (code == Code.CODE_LIMITSET))
         {
-            pomocnaLista = DESerializeList(2);
+            pomocnaLista = DeserializeList(2);
         }
         else if ((code == Code.CODE_SINGLENODE) || (code == Code.CODE_MULTIPLENODE))
         {
-            pomocnaLista = DESerializeList(3);
+            pomocnaLista = DeserializeList(3);
         }
         else
         {
-            pomocnaLista = DESerializeList(4);
+            pomocnaLista = DeserializeList(4);
         }
 
         if (pomocnaLista.Count > 0)
@@ -202,34 +199,34 @@ public class Modul2 : IModul2 {
         return pomocnaLista2;
     }
 
-    public List<CollectionDescription> DESerializeList(int dataSet)
+    public List<CollectionDescription> DeserializeList(int dataSet)
     {
         List<CollectionDescription> pomocnaLista = new List<CollectionDescription>();
-        if (dataSet == 1)
+        switch(dataSet)
         {
-            if (!File.Exists("CollectionDescription1.xml"))
-                File.Create("CollectionDescription1.xml").Dispose();
-            pomocnaLista = DataBase.serializer.DeSerializeObject<List<CollectionDescription>>("CollectionDescription1.xml");
-        }
-        else if (dataSet == 2)
-        {
-            if (!File.Exists("CollectionDescription2.xml"))
-                File.Create("CollectionDescription2.xml").Dispose();
-            pomocnaLista = DataBase.serializer.DeSerializeObject<List<CollectionDescription>>("CollectionDescription2.xml");
-        }
-        else if (dataSet == 3)
-        {
-            if (!File.Exists("CollectionDescription3.xml"))
-                File.Create("CollectionDescription3.xml").Dispose();
-            pomocnaLista = DataBase.serializer.DeSerializeObject<List<CollectionDescription>>("CollectionDescription3.xml");
-        }
-        else
-        {
-            if (!File.Exists("CollectionDescription4.xml"))
-                File.Create("CollectionDescription4.xml").Dispose();
-            pomocnaLista = DataBase.serializer.DeSerializeObject<List<CollectionDescription>>("CollectionDescription4.xml");
-        }
+            case 1:
+                if (!File.Exists("CollectionDescription1.xml"))
+                    File.Create("CollectionDescription1.xml").Dispose();
+                pomocnaLista = DataBase.serializer.DeSerializeObject<List<CollectionDescription>>("CollectionDescription1.xml");
+                break;
+            case 2:
+                if (!File.Exists("CollectionDescription2.xml"))
+                    File.Create("CollectionDescription2.xml").Dispose();
+                pomocnaLista = DataBase.serializer.DeSerializeObject<List<CollectionDescription>>("CollectionDescription2.xml");
+                break;
 
+            case 3:
+                if (!File.Exists("CollectionDescription3.xml"))
+                    File.Create("CollectionDescription3.xml").Dispose();
+                pomocnaLista = DataBase.serializer.DeSerializeObject<List<CollectionDescription>>("CollectionDescription3.xml");
+                break;
+            case 4:
+                if (!File.Exists("CollectionDescription4.xml"))
+                    File.Create("CollectionDescription4.xml").Dispose();
+                pomocnaLista = DataBase.serializer.DeSerializeObject<List<CollectionDescription>>("CollectionDescription4.xml");
+                break;
+
+        }
         if (pomocnaLista == null)
         {
             pomocnaLista = new List<CollectionDescription>();
@@ -243,39 +240,30 @@ public class Modul2 : IModul2 {
         {
             throw new ArgumentNullException("cd");
         }
-
-        if (cd.Dataset == 1)
+        switch(cd.Dataset)
         {
-            col1 = DESerializeList(1);
-            col1.Add(cd);
-
-            DataBase.serializer.SerializeObject<List<CollectionDescription>>(col1, "CollectionDescription1.xml");
-            return true;
-        }
-        else if (cd.Dataset == 2)
-        {
-            col2 = DESerializeList(2);
-            col2.Add(cd);
-            DataBase.serializer.SerializeObject<List<CollectionDescription>>(col2, "CollectionDescription2.xml");
-            return true;
-        }
-        else if (cd.Dataset == 3)
-        {
-            col3 = DESerializeList(3);
-            col3.Add(cd);
-            DataBase.serializer.SerializeObject<List<CollectionDescription>>(col3, "CollectionDescription3.xml");
-            return true;
-        }
-        else if (cd.Dataset == 4)
-        {
-            col4 = DESerializeList(4);
-            col4.Add(cd);
-            DataBase.serializer.SerializeObject<List<CollectionDescription>>(col4, "CollectionDescription4.xml");
-            return true;
-        }
-        else
-        {
-            throw new ArgumentException("Dataset nije validan.");
+            case 1:
+                cd1 = DeserializeList(1);
+                cd1.Add(cd);
+                DataBase.serializer.SerializeObject<List<CollectionDescription>>(cd1, "CollectionDescription1.xml");
+                return true;
+            case 2:
+                cd2 = DeserializeList(2);
+                cd2.Add(cd);
+                DataBase.serializer.SerializeObject<List<CollectionDescription>>(cd2, "CollectionDescription2.xml");
+                return true;
+            case 3:
+                cd3 = DeserializeList(3);
+                cd3.Add(cd);
+                DataBase.serializer.SerializeObject<List<CollectionDescription>>(cd3, "CollectionDescription3.xml");
+                return true;
+            case 4:
+                cd4 = DeserializeList(4);
+                cd4.Add(cd);
+                DataBase.serializer.SerializeObject<List<CollectionDescription>>(cd4, "CollectionDescription4.xml");
+                return true;
+            default:
+                throw new ArgumentException("Dataset nije validan.");
         }
 
     }
