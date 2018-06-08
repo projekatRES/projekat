@@ -210,14 +210,14 @@ namespace Tests
             });
         }
 
-       /* [Test]
-        [TestCase(Code.CODE_ANALOG, 922, 1)]
+        /*[Test]
+        [TestCase(Code.CODE_ANALOG, 908, 1)]
         [TestCase(Code.CODE_LIMITSET, 904, 2)]
-        [TestCase(Code.CODE_CUSTOM, 946, 2)]
-        [TestCase(Code.CODE_SINGLENODE, 1017, 3)]
-        [TestCase(Code.CODE_MULTIPLENODE, 1010, 3)]
+        [TestCase(Code.CODE_CUSTOM, 922, 2)]
+        [TestCase(Code.CODE_SINGLENODE, 920, 3)]
+        [TestCase(Code.CODE_MULTIPLENODE, 930, 3)]
         [TestCase(Code.CODE_CONSUMER, 830, 4)]
-        [TestCase(Code.CODE_SOURCE, 882, 4)]
+        [TestCase(Code.CODE_SOURCE, 842, 4)]
         public void CheckDeadbandTestOk(Code code, int value, int dataSet)
         {
             
@@ -228,7 +228,7 @@ namespace Tests
 
             CollectionDescription collDesc = new CollectionDescription();
             collDesc.Dataset = dataSet;
-            collDesc.Id = 12345;
+            collDesc.Id = 1234;
             collDesc.timeStamp = DateTime.Now;
             collDesc.m_HistoricalCollection = histColl;
 
@@ -268,12 +268,12 @@ namespace Tests
 
             CollectionDescription collDesc = new CollectionDescription();
             collDesc.Dataset = dataSet;
-            collDesc.Id = 12345;
+            collDesc.Id = 123456;
             collDesc.timeStamp = DateTime.Now;
             collDesc.m_HistoricalCollection = histColl;
 
             
-            Assert.AreEqual(modul2.CheckDeadband(collDesc), false);
+            Assert.AreEqual(modul2.CheckDeadband(collDesc), true);
         }
 
         [Test]
@@ -335,12 +335,12 @@ namespace Tests
             });
         }
 
-        /*[Test]
+        [Test]
         [TestCase(Code.CODE_ANALOG, 922, 1)]
         [TestCase(Code.CODE_LIMITSET, 904, 2)]
         [TestCase(Code.CODE_CUSTOM, 946, 2)]
-        [TestCase(Code.CODE_SINGLENODE, 1017, 3)]
-        [TestCase(Code.CODE_MULTIPLENODE, 1010, 3)]
+        [TestCase(Code.CODE_SINGLENODE, 999, 3)]
+        [TestCase(Code.CODE_MULTIPLENODE, 989, 3)]
         [TestCase(Code.CODE_CONSUMER, 830, 4)]
         [TestCase(Code.CODE_SOURCE, 882, 4)]
         public void SerializeOkParameter(Code code, int value, int dataSet)
@@ -355,9 +355,9 @@ namespace Tests
             collDesc.Id = 1235;
             collDesc.timeStamp = DateTime.Now;
             collDesc.m_HistoricalCollection = histColl;
-            Assert.IsTrue(modul2.Serialize(collDesc));
+            Assert.IsFalse(modul2.Serialize(collDesc));
 
-        }*/
+        }
 
         [Test]
         [TestCase(Code.CODE_ANALOG, 143)]

@@ -155,10 +155,11 @@ public class Modul2 : IModul2 {
         {
             if (item.m_HistoricalCollection.m_Modul2Property[0].Code == primljeniPodaci.m_HistoricalCollection.m_Modul2Property[0].Code)
             {
-                if (primljeniPodaci.m_HistoricalCollection.m_Modul2Property[0].Modul2Value < (item.m_HistoricalCollection.m_Modul2Property[0].Modul2Value * 1.02))
+                if ((primljeniPodaci.m_HistoricalCollection.m_Modul2Property[0].Modul2Value < (item.m_HistoricalCollection.m_Modul2Property[0].Modul2Value * 1.02)) && ((primljeniPodaci.m_HistoricalCollection.m_Modul2Property[0].Modul2Value > (item.m_HistoricalCollection.m_Modul2Property[0].Modul2Value * 0.98))))
                 {
                     return false;
                 }
+                
             }
         }
         return true;
